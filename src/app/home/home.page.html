@@ -1,14 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+      <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+    <ion-title>IBank</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="ion-padding">
-    The world is your oyster.
-    <p>If you get lost, the <a target="_blank" rel="noopener" href="https://ionicframework.com/docs/">docs</a> will be your guide.</p>
-  </div>
+    <ion-grid>
+        <ion-row>
+          <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+            <ion-card>
+              <ion-card-header>
+                <ion-card-title style="text-align:left;">Účet:</ion-card-title>
+              </ion-card-header>
+                  <ion-card>
+                      <ion-card-header>
+                        <ion-card-title>{{user.name}} {{user.surname}}</ion-card-title>
+                        <ion-card-subtitle
+                          >{{account.iban}}</ion-card-subtitle
+                        >
+                      </ion-card-header>
+                      <ion-card-content>
+                        <p style="text-align:left;">Zostatok na účte: </p>
+                        <p>{{account.balance}} EUR</p>
+                      </ion-card-content>
+                      </ion-card>
+              </ion-card>
+          </ion-col>
+        </ion-row>
+      </ion-grid> 
+      <app-chart #chart></app-chart>
 </ion-content>
+

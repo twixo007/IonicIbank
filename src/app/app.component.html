@@ -1,3 +1,47 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>
+          IBank
+        </ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/home">
+            <ion-icon name="ios-home" slot="start"></ion-icon>
+            <ion-label>Domov</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/profil">
+            <ion-icon name="ios-contact" slot="start"></ion-icon>
+            <ion-label>Profil</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+            <ion-item lines="none" routerLink="/payments">
+              <ion-icon name="ios-book" slot="start"></ion-icon>
+              <ion-label>Pohyby</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+              <ion-item lines="none" routerLink="/new-payment">
+                <ion-icon name="logo-euro" slot="start"></ion-icon>
+                <ion-label>Platba</ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+                <ion-item lines="none" (click)="onLogout()" button>
+                  <ion-icon name="exit" slot="start"></ion-icon>
+                  <ion-label>Odhlásiť</ion-label>
+                </ion-item>
+              </ion-menu-toggle> 
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet main></ion-router-outlet>
 </ion-app>

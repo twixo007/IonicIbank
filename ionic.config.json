@@ -1,5 +1,7 @@
 {
   "name": "IB-matej-randik",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

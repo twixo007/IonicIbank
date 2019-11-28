@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>Platby</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content padding>
+    <ion-segment (ionChange)="onFilterUpdate($event)">
+      <ion-segment-button value="all" checked>Všetky platby</ion-segment-button>
+      <ion-segment-button value="kredits">Kredity</ion-segment-button>
+      <ion-segment-button value="debets">Debety</ion-segment-button>
+    </ion-segment>
+    <div *ngIf="isLoading" text-center>
+        <ion-spinner color="primary"></ion-spinner>
+    </div>
+    <ion-grid *ngIf="!filteredPayments || filteredPayments.length <= 0">
+        <ion-row>
+          <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+            <p>Neexistuju žiadne takéto platby</p>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid *ngIf="!isLoading && filteredPayments.length > 0">
+      <ion-row>
+        <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+          <ion-card>
+            <ion-card-header>
+              <ion-card-title>{{ filteredPayments[0].place }}</ion-card-title>
+              <ion-card-subtitle
+              [ngStyle]="{color: getColor(filteredPayments[0])}">{{getSign(filteredPayments[0])}}{{ filteredPayments[0].amount }}</ion-card-subtitle
+              >
+            </ion-card-header>
+            <ion-card-content>
+              <p>{{ filteredPayments[0].paymentCategory }}</p>
+            </ion-card-content>
+            <div>
+              <ion-button
+                fill="clear"
+                color="primary"
+                [routerLink]="[
+                  '/',
+                  'payments',
+                  filteredPayments[0].id
+                ]"
+              >
+                Viac
+              </ion-button>
+            </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-sm="8" offset-sm="2" text-center>
+          <ion-virtual-scroll
+            [items]="listedLoadedPayments"
+            approxItemHeight="70px"
+          >
+            <ion-item
+              [routerLink]="['/', 'payments', payment.id]"
+              detail
+              *virtualItem="let payment"
+            >
+              <ion-thumbnail slot="start">
+              </ion-thumbnail>
+              <ion-label>
+                <h2>{{ payment.place }}</h2>
+                <p [ngStyle]="{color: getColor(payment)}" style="float:right;" ><font  size="4"><strong>{{getSign(payment)}} {{ payment.amount }}</strong></font></p>
+                <p>{{ payment.paymentCategory }}</p>
+              </ion-label>
+            </ion-item>
+          </ion-virtual-scroll>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
+  

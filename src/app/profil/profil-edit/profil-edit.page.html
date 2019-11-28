@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar>
+      <ion-buttons slot="start">
+          <ion-back-button
+            [defaultHref]="'/profil'"
+          ></ion-back-button>
+        </ion-buttons>
+    <ion-title>Zmena profilu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+        <form [formGroup]="editForm">
+          <ion-grid> 
+            <ion-row>
+              <ion-col size-sm="6" offset-sm="3">
+                <ion-list>
+                  <ion-item>
+                    <ion-label position="floating">Titul</ion-label>
+                    <ion-input
+                      placeholder="Bc."
+                      type="text"
+                      autocomplete
+                      autocorrect
+                      formControlName="title"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label position="floating">Meno</ion-label>
+                    <ion-input
+                      placeholder="Janko"
+                      type="text"
+                      autocomplete
+                      autocorrect
+                      formControlName="name"
+                    ></ion-input>
+                  </ion-item>
+                  <ion-item>
+                  <ion-label position="floating">Priezvisko</ion-label>
+                    <ion-input
+                     placeholder="Hrasko"
+                      type="text"
+                      autocomplete
+                      autocorrect
+                      formControlName="surname"
+                    ></ion-input>
+                  </ion-item>
+                <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                    <ion-input
+                    placeholder="janko.hrasko@gmail.com"
+                      type="email"
+                      autocomplete
+                      autocorrect
+                      formControlName="email"
+                    ></ion-input>
+                  </ion-item>
+                </ion-list>
+                <ion-list-header><h1>Adresa</h1></ion-list-header>
+                <ion-list>
+                <ion-item>
+                    <ion-label position="floating">Mesto</ion-label>
+                      <ion-input
+                      placeholder="Bratislava"
+                        type="text"
+                        autocomplete
+                        autocorrect
+                        formControlName="city"
+                      ></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label position="floating">Ulica</ion-label>
+                          <ion-input
+                          placeholder="Hlavacikova 15"
+                            type="text"
+                            autocomplete
+                            autocorrect
+                            formControlName="street"
+                          ></ion-input>
+                        </ion-item>
+                        <ion-item>
+                            <ion-label position="floating">Tel.číslo</ion-label>
+                              <ion-input
+                              placeholder="0905154584"
+                                type="tel"
+                                autocomplete
+                                autocorrect
+                                formControlName="phoneNumber"
+                              ></ion-input>
+                            </ion-item>
+                            <ion-item>
+                                <ion-label position="floating">Psč</ion-label>
+                                  <ion-input
+                                  placeholder ="841 25"
+                                    type="number"
+                                    formControlName="psc"
+                                    autocomplete
+                                    autocorrect
+                                    minlength="5"
+                                  ></ion-input>
+                                </ion-item>
+                                <ion-row
+                                *ngIf="
+                                  !editForm.get('psc').valid && editForm.get('psc').touched
+                                "
+                              >
+                                <ion-col size-sm="6" offset-sm="3">
+                                  <p>Psč musí mať presne 5 čísel.</p>
+                                </ion-col>
+                              </ion-row>
+                </ion-list>
+              </ion-col>
+              
+            </ion-row>
+            <ion-col size-sm="6" offset-sm="3">
+                <ion-button
+                  type="submit"
+                  color="primary"
+                  (click)="onSubmit()"
+                  expand="block"
+                  [disabled]="!editForm.valid"
+                >
+                  Ulož
+                </ion-button>
+              </ion-col>
+          </ion-grid>
+        </form>
+</ion-content>
